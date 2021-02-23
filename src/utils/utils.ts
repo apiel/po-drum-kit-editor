@@ -14,3 +14,7 @@ export function fill(len: number, fn: (key: number) => any) {
 export function on(isValid: boolean, value: string) {
     return isValid ? value : '';
 }
+
+export function sleep(time: number) {
+    return new Promise((resolve) => setTimeout(resolve, time));
+}
