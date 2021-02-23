@@ -1,0 +1,70 @@
+:root {
+    --track-sequence-width: 140px;
+    --track-sequence-fullwidth: calc(
+        var(--track-sequence-width) + 30px
+    );
+}
+
+#track {
+    margin: 0 auto;
+    padding-left: 0;
+}
+@media screen and (min-width: 380px) and (max-width: 540px) {
+    #track {
+        width: calc(var(--track-sequence-fullwidth) * 2);
+    }
+}
+@media screen and (min-width: 540px) and (max-width: 700px) {
+    #track {
+        width: calc(var(--track-sequence-fullwidth) * 3);
+    }
+}
+@media screen and (min-width: 700px) and (max-width: 860px) {
+    #track {
+        width: calc(var(--track-sequence-fullwidth) * 4);
+    }
+}
+
+#track .sequence {
+    display: inline-block;
+    cursor: pointer;
+    width: var(--track-sequence-width);
+}
+
+#track .sequence .title {
+    font-weight: bold;
+    font-size: 14px;
+    color: #333;
+}
+
+#track .sequence .title i {
+    font-weight: normal;
+    font-size: 9px;
+    color: #666;
+}
+
+#track .sequence.active {
+    background-color: rgb(255 236 236);
+}
+
+#track .notes > div {
+    font-size: 8px;
+    /* width: 16px; */
+    height: 10px;
+    text-align: center;
+    background: #eee;
+    border-radius: 5px;
+    float: left;
+    margin: 2px 4px 2px 0;
+    padding: 1px;
+}
+
+#track .notes .step {
+    display: none;
+}
+
+#track .time {
+    clear: both;
+    font-size: 10px;
+    padding-top: 4px;
+}
