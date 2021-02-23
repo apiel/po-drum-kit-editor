@@ -2,7 +2,7 @@ import { Player } from 'tone';
 
 import { onKitLoaded, onKitsLoaded, onSamplesLoaded } from '../lib/event';
 import { loadKit, loadKits, loadSamples } from '../lib/git';
-import { getGithubRepo, getGithubUser } from '../storage/localStorage';
+import { getGithubRepo, getGithubToken, getGithubUser, storeGithubToken } from '../storage/localStorage';
 import { elById, evEach, removeChildClass } from '../utils/dom';
 import { sleep } from '../utils/utils';
 
@@ -56,6 +56,17 @@ export function initSamples() {
             elKit.appendChild(el);
         });
     });
+
+    elById('save-kit').addEventListener('click', () => {
+        if (!getGithubToken()) {
+            const token = prompt('Please first provide your github personal access token:');
+            storeGithubToken(token);
+        } else {
+            const filename = prompt('Provide a filename for saving the kit:');
+            console.log('filename', filename);
+        }
+    });
+    
 }
 
 async function playKit() {

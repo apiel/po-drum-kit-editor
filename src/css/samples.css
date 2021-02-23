@@ -25,3 +25,10 @@
 #samples .sample.selected {
     background-color: rgb(236, 217, 217);
 }
+
+.btn-square {
+    width: 75px;
+    height: 75px;
+    margin: 5px;
+    font-size: 10px;
+}
