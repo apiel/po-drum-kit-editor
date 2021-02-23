@@ -1,6 +1,6 @@
 import { initApp } from './view/app';
 import { App } from './view/App';
-import { loadSamples } from './lib/git';
+import { loadKits, loadSamples } from './lib/git';
 
 App()
     .render()
@@ -10,3 +10,4 @@ App()
     });
 
 loadSamples();
+loadKits();

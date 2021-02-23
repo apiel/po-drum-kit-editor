@@ -1,12 +1,21 @@
 import { Player } from 'tone';
 
-import { onSamplesLoaded } from '../lib/event';
-import { loadSamples } from '../lib/git';
+import { onKitLoaded, onKitsLoaded, onSamplesLoaded } from '../lib/event';
+import { loadKit, loadKits, loadSamples } from '../lib/git';
 import { getGithubRepo, getGithubUser } from '../storage/localStorage';
 import { elById, evEach, removeChildClass } from '../utils/dom';
 import { sleep } from '../utils/utils';
 
 export function initSamples() {
+    elById('play-kit').addEventListener('click', playKit);
+    elById('load').addEventListener('click', () => {
+        if (getGithubUser() && getGithubRepo()) {
+            loadSamples();
+            loadKits();
+        } else {
+            alert('Please provide github user and repo');
+        }
+    });
     onSamplesLoaded((samples) => {
         samples.forEach((sample) => {
             elById(
@@ -23,13 +32,28 @@ export function initSamples() {
             'dblclick',
             onDoubleClickSample,
         );
-        elById('play-kit').addEventListener('click', playKit);
-        elById('load-samples').addEventListener('click', () => {
-            if (getGithubUser() && getGithubRepo()) {
-                loadSamples();
-            } else {
-                alert('Please provide github user and repo');
-            }
+    });
+
+    onKitsLoaded((kits) => {
+        kits.forEach((kit) => {
+            elById('load-kit').innerHTML += `<option>${kit}</option>`;
+        });
+    });
+    elById('load-kit').addEventListener('change', ({ currentTarget }) => {
+        loadKit((currentTarget as HTMLInputElement).value);
+    });
+
+    onKitLoaded((samples) => {
+        const elKit = elById('samples-kit');
+        const elList = elById('samples-list');
+        const items = Array.from(
+            elKit.querySelectorAll('.sample'),
+        ) as HTMLElement[];
+        items.forEach((el) => elList.appendChild(el));
+
+        samples.forEach((sample) => {
+            const el = elList.querySelector(`.sample[data-file="${sample}"]`);
+            elKit.appendChild(el);
         });
     });
 }

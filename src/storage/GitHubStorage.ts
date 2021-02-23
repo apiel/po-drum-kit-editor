@@ -118,7 +118,7 @@ export class GitHubStorage extends Storage {
     }
 
     async readJSON(path: string) {
-        if (!this.token || !this.user) {
+        if (!this.user) {
             throw new Error(ERR.missingGitHubConfig);
         }
         try {
