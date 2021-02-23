@@ -7,6 +7,7 @@ export function App(): ElementNode {
     return (
         <div id="samples">
             <Settings />
+            <button id="load-samples">Load samples</button>
             <p class="info">Double click on sample to move it to other column.</p>
             <button id="play-kit"><PlayOutline /> Play kit</button>
             <div id="samples-list">Samples</div>

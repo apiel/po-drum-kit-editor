@@ -1,6 +1,7 @@
 import { Player } from 'tone';
 
 import { onSamplesLoaded } from '../lib/event';
+import { loadSamples } from '../lib/git';
 import { getGithubRepo, getGithubUser } from '../storage/localStorage';
 import { elById, evEach, removeChildClass } from '../utils/dom';
 import { sleep } from '../utils/utils';
@@ -23,6 +24,13 @@ export function initSamples() {
             onDoubleClickSample,
         );
         elById('play-kit').addEventListener('click', playKit);
+        elById('load-samples').addEventListener('click', () => {
+            if (getGithubUser() && getGithubRepo()) {
+                loadSamples();
+            } else {
+                alert('Please provide github user and repo');
+            }
+        });
     });
 }
 

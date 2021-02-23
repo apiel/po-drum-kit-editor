@@ -216,14 +216,14 @@ export class GitHubStorage extends Storage {
     }
 
     protected call(config: AxiosRequestConfig) {
-        if (!this.token || !this.user) {
+        if (!this.user && !this.repo) {
             throw new Error(ERR.missingGitHubConfig);
         }
         return axios({
             ...config,
             headers: {
                 ...config?.headers,
-                Authorization: `token ${this.token}`,
+                ...(this.token ? { Authorization: `token ${this.token}` } : {}),
             },
         });
     }
