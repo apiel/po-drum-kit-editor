@@ -14,9 +14,7 @@ export function App(): ElementNode {
             </p>
             <p>
                 <label>Kit loader</label>
-                <select id="load-kit">
-                    <option></option>
-                </select>
+                <select id="load-kit"></select>
             </p>
             <p class="info">
                 Double click on sample to move it to other column.
@@ -27,8 +25,8 @@ export function App(): ElementNode {
             <button id="save-kit" class="btn-square">
                 <SaveOutline /> Save kit
             </button>
-            <div id="samples-list">Samples</div>
             <div id="samples-kit">Kit</div>
+            <div id="samples-list">Samples</div>
             <div style="clear: both"></div>
             <GithubTokenInfo />
         </div>

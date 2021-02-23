@@ -11,12 +11,9 @@ export async function loadKit(file: string) {
     }
 }
 
-// export function saveSequences() {
-//     return gitHubStorage.saveJSON(
-//         join('sequences', 'sequences.json'),
-//         sequences,
-//     );
-// }
+export function saveKit(file: string, samples: string[]) {
+    return gitHubStorage.saveJSON(join('drumkits', file), samples);
+}
 
 export async function loadSamples() {
     const samples = await gitHubStorage.readdir('samples');
@@ -24,6 +21,6 @@ export async function loadSamples() {
 }
 
 export async function loadKits() {
-    const kits = await gitHubStorage.readdir('drumkits');
+    const kits = await gitHubStorage.readdir(`drumkits?${Math.random()}`);
     emitKitsLoaded(kits);
 }

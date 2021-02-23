@@ -35,3 +35,11 @@ export function storeGithubRepo(val: string) {
 export function storeGithubToken(val: string) {
     store(githubStorageKeys.githubToken, val);
 }
+
+export function getCurrentKit() {
+    return window.sessionStorage.getItem('currentKit') || '';
+}
+
+export function storeCurrentKit(val: string) {
+    window.sessionStorage.setItem('currentKit', val);
+}

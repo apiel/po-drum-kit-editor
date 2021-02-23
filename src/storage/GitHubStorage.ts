@@ -167,9 +167,9 @@ export class GitHubStorage extends Storage {
                 return data.sha;
             }
         } catch (error) {
-            if (error?.response?.status !== 404) {
-                throw error;
-            }
+            // if (error?.response?.status !== 404) {
+            //     throw error;
+            // }
         }
     }
 

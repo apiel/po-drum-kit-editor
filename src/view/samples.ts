@@ -1,8 +1,15 @@
 import { Player } from 'tone';
 
 import { onKitLoaded, onKitsLoaded, onSamplesLoaded } from '../lib/event';
-import { loadKit, loadKits, loadSamples } from '../lib/git';
-import { getGithubRepo, getGithubToken, getGithubUser, storeGithubToken } from '../storage/localStorage';
+import { loadKit, loadKits, loadSamples, saveKit } from '../lib/git';
+import {
+    getGithubRepo,
+    getGithubToken,
+    getGithubUser,
+    storeGithubToken,
+    storeCurrentKit,
+    getCurrentKit,
+} from '../storage/localStorage';
 import { elById, evEach, removeChildClass } from '../utils/dom';
 import { sleep } from '../utils/utils';
 
@@ -35,9 +42,14 @@ export function initSamples() {
     });
 
     onKitsLoaded((kits) => {
+        elById('load-kit').innerHTML = '<option></option>';
         kits.forEach((kit) => {
             elById('load-kit').innerHTML += `<option>${kit}</option>`;
         });
+        if (getCurrentKit()) {
+            (elById('load-kit') as HTMLInputElement).value = getCurrentKit();
+            loadKit(getCurrentKit());
+        }
     });
     elById('load-kit').addEventListener('change', ({ currentTarget }) => {
         loadKit((currentTarget as HTMLInputElement).value);
@@ -57,16 +69,26 @@ export function initSamples() {
         });
     });
 
-    elById('save-kit').addEventListener('click', () => {
+    elById('save-kit').addEventListener('click', async () => {
         if (!getGithubToken()) {
-            const token = prompt('Please first provide your github personal access token:');
+            const token = prompt(
+                'Please first provide your github personal access token:',
+            );
             storeGithubToken(token);
-        } else {
-            const filename = prompt('Provide a filename for saving the kit:');
-            console.log('filename', filename);
+        }
+        if (getGithubToken()) {
+            const filename = prompt(
+                'Provide a filename for saving the kit:',
+                (elById('load-kit') as HTMLInputElement).value,
+            );
+            const samples = (Array.from(
+                elById('samples-kit').querySelectorAll('.sample'),
+            ) as HTMLElement[]).map(({ dataset }) => dataset.file);
+            await saveKit(filename, samples);
+            storeCurrentKit(filename);
+            location.reload();
         }
     });
-    
 }
 
 async function playKit() {
