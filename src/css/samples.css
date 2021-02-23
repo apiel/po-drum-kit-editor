@@ -1,0 +1,23 @@
+#samples-kit {
+    width: 200px;
+    float: left;
+    margin: 10px;
+}
+
+#samples-list {
+    width: 200px;
+    float: left;
+    margin: 10px;
+}
+
+#samples .sample {
+    padding: 5px;
+    margin: 5px;
+    border: 1px solid #888;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+#samples .sample.selected {
+    background-color: rgb(236, 217, 217);
+}

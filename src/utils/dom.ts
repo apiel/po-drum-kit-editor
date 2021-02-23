@@ -26,15 +26,15 @@ export function applyToChild(
 }
 
 export function toggleChildClass(parent: HTMLElement, classname: string) {
-    return applyToChild(parent, (el) => el.classList.toggle(classname));
+    return applyToChild(parent, (el) => el.classList?.toggle(classname));
 }
 
 export function addChildClass(parent: HTMLElement, classname: string) {
-    return applyToChild(parent, (el) => el.classList.add(classname));
+    return applyToChild(parent, (el) => el.classList?.add(classname));
 }
 
 export function removeChildClass(parent: HTMLElement, classname: string) {
-    return applyToChild(parent, (el) => el.classList.remove(classname));
+    return applyToChild(parent, (el) => el.classList?.remove(classname));
 }
 
 export function toggleSiblingClass(el: HTMLElement, classname: string) {

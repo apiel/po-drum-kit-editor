@@ -1,10 +1,6 @@
 import { applyToChild, elByClass, elById } from '../utils/dom';
-import { onSequenceChangeValue } from '../Zic';
-import { getDataId } from './Components/Sequence';
-import { initOutputs } from './Outputs/outputs';
-import { initSequences } from './Sequences/sequences';
 import { initSettings } from './Settings/settings';
-import { initTracks } from './Tracks/tracks';
+import { initSamples } from './Samples/samples';
 
 function showTab(btnIndex: number) {
     const fn = (tab: HTMLElement, tabIndex: number) => {
@@ -43,16 +39,8 @@ export function initApp() {
     });
 
     initSettings();
-    initTracks();
-    initSequences();
-    initOutputs();
+    initSamples();
 }
 
 window.addEventListener('popstate', showSessionTab);
 // window.history.pushState({ tabId: btnIndex }, `tab ${btnIndex}`, '/url/hello');
-
-onSequenceChangeValue(({ sequence, key }) => {
-    const selector = `[data-id="${getDataId(sequence.id)}"] .${key}`;
-    const elements = document.querySelectorAll(selector);
-    Array.from(elements).forEach((el) => (el.textContent = sequence[key]));
-});

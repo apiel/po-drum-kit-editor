@@ -10,8 +10,7 @@ body {
 
 @import "./modal.css";
 @import "./tabs.css";
-@import "./tracks.css";
-@import "./sequences.css";
+@import "./samples.css";
 
 .info {
     line-height: 1.2;
