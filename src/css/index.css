@@ -9,7 +9,6 @@ body {
 }
 
 @import "./modal.css";
-@import "./tabs.css";
 @import "./samples.css";
 
 .info {
@@ -19,6 +18,16 @@ body {
     color: var(--grey-text);
     text-align: justify;
     margin: 5;
+}
+
+.input {
+    margin: 5px 0;
+}
+
+.input label{
+    width: 50px;
+    display: inline-block;
+    margin-right: 5px;
 }
 
 button .icon {

@@ -16,11 +16,11 @@ export function initSettings() {
 
     elGithubToken = elById('githubToken');
     elGithubTokenToggle = elById('githubTokenToggle');
-    elGithubToken.onchange = evStrVal(storeGithubToken);
-    elGithubTokenToggle.onclick = showToken;
+    // elGithubToken.onchange = evStrVal(storeGithubToken);
+    // elGithubTokenToggle.onclick = showToken;
 }
 
-function showToken() {
-    toggleAttr(elGithubToken, 'type', 'password', 'text');
-    toggleChildClass(elGithubTokenToggle, 'hide');
-}
+// function showToken() {
+//     toggleAttr(elGithubToken, 'type', 'password', 'text');
+//     toggleChildClass(elGithubTokenToggle, 'hide');
+// }

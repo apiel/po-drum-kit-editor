@@ -1,9 +1,9 @@
 import { Player } from 'tone';
 
-import { onSamplesLoaded } from '../../lib/event';
-import { getGithubRepo, getGithubUser } from '../../storage/localStorage';
-import { elById, evEach, removeChildClass } from '../../utils/dom';
-import { sleep } from '../../utils/utils';
+import { onSamplesLoaded } from '../lib/event';
+import { getGithubRepo, getGithubUser } from '../storage/localStorage';
+import { elById, evEach, removeChildClass } from '../utils/dom';
+import { sleep } from '../utils/utils';
 
 export function initSamples() {
     onSamplesLoaded((samples) => {
